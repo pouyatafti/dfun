@@ -22,13 +22,16 @@
 }
 
 #define testtime(n, statement) { \
-	clock_t testtime_ts, testtime_te; \
+	struct timespec testtime_ts, testtime_te; \
+	double testtime_t; \
 	long testtime_i; \
 	printf("timing %ld x " #statement "... ", n); \
-	testtime_ts = clock(); \
+	clock_gettime(CLOCK_MONOTONIC, &testtime_ts); \
 	for (testtime_i = 0; testtime_i < n; ++testtime_i) { \
 		statement; \
 	} \
-	testtime_te = clock(); \
-	printf("%fs total, %fms per iteration\n", (double)(testtime_te-testtime_ts) / CLOCKS_PER_SEC, (double)1000*(testtime_te-testtime_ts) / (CLOCKS_PER_SEC*n)); \
+	clock_gettime(CLOCK_MONOTONIC, &testtime_te); \
+	testtime_t = (testtime_te.tv_sec-testtime_ts.tv_sec); \
+	testtime_t += (testtime_te.tv_nsec-testtime_ts.tv_nsec) / 1000000000.0; \
+	printf("%fs total, %fms per iteration\n", testtime_t, 1000*testtime_t/n); \
 }
