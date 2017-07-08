@@ -1,7 +1,7 @@
 LIB=dfun
 
-CFLAGS+=
-#LDFLAGS+=--entry main
+CFLAGS+=-fopenmp
+LDFLAGS+=-fopenmp
 LDADD+=-lc -lm
 
 SRCDIR=../src

@@ -16,12 +16,13 @@ dcov1(Real *x, Index nx, Real *y, Index ny)
 	a = 0;
 	b = 0;
 	d = 0;
-	xi = x;
-	yi = y;
-	for (i=0; i<n; ++i, ++xi, ++yi) {
+	#pragma omp parallel for private(i, xi, yi, ai, bi, di, j, xj, yj, aij, bij) shared(x, y, n) reduction(+: a, b, d)
+	for (i=0; i<n; ++i) {
 		ai = 0;
 		bi = 0;
 		di = 0;
+		xi = x+i;
+		yi = y+i;
 		xj = x;
 		yj = y;
 		for (j=0; j<n; ++j, ++xj, ++yj) {
@@ -51,12 +52,13 @@ dcorr1(Real *x, Index nx, Real *y, Index ny)
 	a = 0;
 	b = 0;
 	d = 0; dx = 0; dy = 0;
-	xi = x;
-	yi = y;
-	for (i=0; i<n; ++i, ++xi, ++yi) {
+	#pragma omp parallel for private(i, xi, yi, ai, bi, di, dix, diy, j, xj, yj, aij, bij) shared(x, y, n) reduction(+: a, b, d, dx, dy)
+	for (i=0; i<n; ++i) {
 		ai = 0;
 		bi = 0;
 		di = 0; dix = 0; diy = 0;
+		xi = x+i;
+		yi = y+i;
 		xj = x;
 		yj = y;
 		for (j=0; j<n; ++j, ++xj, ++yj) {
