@@ -1,8 +1,8 @@
 LIB=dfun
 
 CC=clang
-CFLAGS+=-fopenmp=libgomp
-LDFLAGS+=-fopenmp=libgomp
+CFLAGS+=-Ofast -fopenmp
+LDFLAGS+=-fopenmp
 LDADD+=-lc -lm
 
 SRCDIR=../src

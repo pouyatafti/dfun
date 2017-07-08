@@ -2,7 +2,6 @@
 
 #include "num.h"
 
-
 Real
 ipow(Real base, int exp)
 {
