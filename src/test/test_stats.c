@@ -15,14 +15,14 @@ main()
 		X[100000], Y[100000];
 	Index n = 5, N = 100000, i;
 
-	testrel(Real, ==, round(1e5*dcov1(y1,n,y1,n)), 599040);
-	testrel(Real, ==, round(1e5*dcorr1(x2,n,y1,n)), 100000);
-	testrel(Real, ==, round(1e5*dcorr1(x2,n,y2,n)), 76181);
-	testrel(Real, ==, round(1e5*dcorr1(x1,n,y2,n)), round(1e5*dcov1(x1,n,y2,n) / sqrt(dcov1(x1,n,x1,n)*dcov1(y2,n,y2,n))));
+	testrel(Real, ==, round(1e5*dcov1(y1,y1,n)), 599040);
+	testrel(Real, ==, round(1e5*dcorr1(x2,y1,n)), 100000);
+	testrel(Real, ==, round(1e5*dcorr1(x2,y2,n)), 76181);
+	testrel(Real, ==, round(1e5*dcorr1(x1,y2,n)), round(1e5*dcov1(x1,y2,n) / sqrt(dcov1(x1,x1,n)*dcov1(y2,y2,n))));
 
 	for (i = 0; i < N; ++i) {
 		X[i] = (Real)rand() / RAND_MAX;
 		Y[i] = X[i]*X[i];
 	}
-	testtime(1L, dcorr1(X,N,Y,N));
+	testtime(1L, dcorr1(X,Y,N));
 }

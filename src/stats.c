@@ -5,13 +5,11 @@
 
 
 Real
-dcov1(Real *x, Index nx, Real *y, Index ny)
+dcov1(Real *x, Real *y, Index n)
 {
-	Index i, j, n;
+	Index i, j;
 	Real aij, bij, ai, bi, di, a, b, d;
 	Real *xi, *xj, *yi, *yj;
-
-	n = nx < ny ? nx : ny;
 
 	a = 0;
 	b = 0;
@@ -41,13 +39,11 @@ dcov1(Real *x, Index nx, Real *y, Index ny)
 }
 
 Real
-dcorr1(Real *x, Index nx, Real *y, Index ny)
+dcorr1(Real *x, Real *y, Index n)
 {
-	Index i, j, n;
+	Index i, j;
 	Real aij, bij, ai, bi, di, dix, diy, a, b, d, dx, dy;
 	Real *xi, *xj, *yi, *yj;
-
-	n = nx < ny ? nx : ny;
 
 	a = 0;
 	b = 0;
