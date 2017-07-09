@@ -8,6 +8,7 @@
 #define testpr(condition, descr, ...) { \
 	char str[512]; \
 	printf("testing " descr "... "); \
+	fflush(stdout); \
 	if (condition) \
 		printf("OK\n"); \
 	else { \
@@ -25,7 +26,8 @@
 	struct timespec testtime_ts, testtime_te; \
 	double testtime_t; \
 	long testtime_i; \
-	printf("timing %ld x " #statement "... ", n); \
+	printf("timing %ld time(s) " #statement "... ", n); \
+	fflush(stdout); \
 	clock_gettime(CLOCK_MONOTONIC, &testtime_ts); \
 	for (testtime_i = 0; testtime_i < n; ++testtime_i) { \
 		statement; \
